@@ -1,0 +1,72 @@
+# Frequency Map - Chakra and Sacred Frequencies
+
+# Base Tuning
+base_tuning:
+  standard: 440  # Hz (A4)
+  sacred: 432    # Hz (A4 - sacred tuning)
+  
+# Seven Primary Chakras (Solfeggio Frequencies)
+chakras:
+  root:
+    name: "Muladhara"
+    frequency: 396  # Hz
+    color: "red"
+    element: "earth"
+    location: "base of spine"
+    
+  sacral:
+    name: "Svadhisthana"
+    frequency: 417  # Hz
+    color: "orange"
+    element: "water"
+    location: "lower abdomen"
+    
+  solar_plexus:
+    name: "Manipura"
+    frequency: 528  # Hz (Transformation/DNA repair)
+    color: "yellow"
+    element: "fire"
+    location: "upper abdomen"
+    
+  heart:
+    name: "Anahata"
+    frequency: 639  # Hz
+    color: "green"
+    element: "air"
+    location: "chest center"
+    
+  throat:
+    name: "Vishuddha"
+    frequency: 741  # Hz
+    color: "blue"
+    element: "ether"
+    location: "throat"
+    
+  third_eye:
+    name: "Ajna"
+    frequency: 852  # Hz
+    color: "indigo"
+    element: "light"
+    location: "forehead center"
+    
+  crown:
+    name: "Sahasrara"
+    frequency: 963  # Hz
+    color: "violet"
+    element: "consciousness"
+    location: "top of head"
+
+# Resonance Patterns
+resonance:
+  pyramid_fundamental: 110  # Hz (approximate Great Pyramid frequency)
+  golden_ratio_phi: 1.618033988749
+  fibonacci_sequence: [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+  
+# Harmonic Series
+harmonics:
+  fundamental: 1
+  octave: 2
+  perfect_fifth: 1.5
+  perfect_fourth: 1.333333
+  major_third: 1.25
+  minor_third: 1.2
