@@ -52,6 +52,7 @@ class SynchronizerConfig:
     buffer_size: int = 1024
     overlap: float = 0.5  # Buffer overlap for smooth transitions
     base_frequency: float = 528.0  # Hz (Solfeggio frequency)
+    max_sync_pulses: int = 10  # Maximum organic pulses to process per sync
 
 
 class Synchronizer:
@@ -156,8 +157,9 @@ class Synchronizer:
         # Use chamber ratio for temporal alignment
         window_size = 1.0 / self.config.organic_rate  # Organic pulse period
         
-        # Process organic pulses
-        for org_pulse in self.organic_buffer[-10:]:  # Last 10 organic pulses
+        # Process organic pulses (configurable limit)
+        max_pulses = min(self.config.max_sync_pulses, len(self.organic_buffer))
+        for org_pulse in self.organic_buffer[-max_pulses:]:
             # Find digital pulses in time window
             digital_matches = [
                 d for d in self.digital_buffer

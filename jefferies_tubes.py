@@ -11,7 +11,8 @@ The tubes use async channels for high-bandwidth, low-latency data transfer.
 
 import asyncio
 from dataclasses import dataclass, field
-from typing import Any, Optional, Dict, Callable
+from typing import Any, Callable, Optional, Dict, Callable
+from typing import Awaitable
 from enum import Enum
 
 
@@ -172,7 +173,7 @@ class JefferiesTubes:
     def register_handler(
         self,
         channel_name: str,
-        handler: Callable[[DataPacket], None]
+        handler: Callable[[DataPacket], Awaitable[None]]
     ) -> None:
         """
         Register a handler for a channel.

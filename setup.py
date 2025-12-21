@@ -45,9 +45,6 @@ setup(
             "mypy>=1.5.0",
         ],
     },
-    package_data={
-        "arkadas": ["chamber_config.yaml"],
-    },
     include_package_data=True,
     keywords="sacred-geometry pyramid synchronization collective-intelligence sensor-fusion",
     project_urls={

@@ -11,7 +11,7 @@ data packets through the system based on priority and destination.
 
 import asyncio
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Awaitable, Callable
 from enum import Enum
 import time
 
@@ -226,14 +226,14 @@ class TrainStation:
     async def dispatch_from_platform(
         self,
         platform_id: int,
-        handler: Any
+        handler: Callable[[DataPacket], Awaitable[None]]
     ) -> None:
         """
         Dispatch packets from a platform to a handler.
         
         Args:
             platform_id: Platform to dispatch from
-            handler: Handler function for packets
+            handler: Async handler function for packets
         """
         if platform_id not in self.platforms:
             return

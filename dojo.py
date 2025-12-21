@@ -15,7 +15,7 @@ Handles:
 
 import asyncio
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Any, Callable
+from typing import Dict, List, Optional, Any, Callable, Awaitable
 import time
 import statistics
 
@@ -257,7 +257,7 @@ class Dojo:
     
     async def training_loop(
         self,
-        metrics_provider: Callable[[], Dict[str, float]],
+        metrics_provider: Callable[[], Awaitable[Dict[str, float]]],
         iterations: int = 100
     ) -> TrainingSession:
         """
@@ -275,7 +275,7 @@ class Dojo:
         
         for i in range(iterations):
             # Get current metrics
-            metrics = metrics_provider()
+            metrics = await metrics_provider()
             
             # Record metrics
             for name, value in metrics.items():
