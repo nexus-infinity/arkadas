@@ -6,6 +6,7 @@ Implements 360° → 180° aperture sensing and processing
 from typing import List, Dict, Any, Optional
 from dataclasses import dataclass
 import time
+import math
 
 
 @dataclass
@@ -136,7 +137,6 @@ class ApertureSensing:
         """
         # Convert horizontal angle to upward focus
         # All inputs contribute to the 180° upward hemisphere
-        import math
         
         # Project onto hemisphere
         theta = horizontal_angle * math.pi / 180.0
