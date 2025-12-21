@@ -18,13 +18,14 @@ Like Obi-Wan Kenobi's connection to the Force, this network perceives
 all directions simultaneously and synthesizes knowledge into actionable wisdom.
 """
 
-from .sensor_node import SensorNode, SensorType
+from .sensor_node import SensorNode, SensorType, SensorConfig
 from .network import ObiWanNetwork
 from .collective_intelligence import CollectiveIntelligence
 
 __all__ = [
     'SensorNode',
     'SensorType',
+    'SensorConfig',
     'ObiWanNetwork',
     'CollectiveIntelligence'
 ]

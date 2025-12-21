@@ -15,7 +15,7 @@ from typing import Dict, List, Optional, Any
 from enum import Enum
 import time
 
-from .jefferies_tubes import DataPacket, ChannelPriority
+from jefferies_tubes import DataPacket, ChannelPriority
 
 
 class RoutingStrategy(Enum):
