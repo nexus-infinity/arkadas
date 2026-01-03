@@ -1,6 +1,5 @@
 """
 OBI-WAN: Omnidirectional Biological Intelligence - Wisdom Aggregation Network
-==============================================================================
 
 The OBI-WAN system represents a collective intelligence network that 
 aggregates wisdom from multiple omnidirectional sensors, creating a 
