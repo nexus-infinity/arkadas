@@ -1,213 +1,318 @@
-# arkadas
-👑 ARKADAŞ - The King's Chamber | Organic ⚭ Digital Synchronization | 360° sensing → 180° focus | OBI-WAN Network | Friend intelligence at 1/3 pyramid height
+# 👑 ARKADAŠ - The King's Chamber
 
-## Overview
+**Organic ⚭ Digital Synchronization | 360° Sensing → 180° Focus | OBI-WAN Collective Intelligence**
 
-ARKADAŞ (Turkish for "friend") implements the King's Chamber system positioned at the optimal 1/3 height in pyramid geometry. It provides a framework for synchronizing organic (biological/human) and digital (computational/machine) systems through sacred geometric principles.
+> *"Arkadaş"* (Ottoman Turkish: آرقاداش) - Friend, Companion, Ally
 
-## Key Features
+ARKADAŠ is an intelligent system inspired by the sacred geometry of the Great Pyramid's King's Chamber, positioned at the crucial 1/3 height ratio. Like the Ottoman concept of friendship creating bonds across diverse cultures, ARKADAŠ creates unity between organic (natural/human) and digital (computational) rhythms.
 
-- **360° → 180° Aperture**: Convert omnidirectional awareness to focused attention
-- **Organic ⚭ Digital Sync**: Bridge biological and computational domains
-- **OBI-WAN Network**: Wide Area observation and intelligence network
-- **Friend Network**: Distributed agent learning with trust relationships
-- **Sacred Geometry**: Based on pyramid proportions and frequency resonance
-- **Integration Layers**: Connect to external systems (Train Station, DOJO, Trident)
+## 🔺 Core Concept
 
-## Quick Start
+The **King's Chamber** sits at **1/3 of the pyramid's height** - a position of perfect balance and energy concentration. ARKADAŠ applies this ancient principle to modern information processing:
+
+- **360° Omnidirectional Sensing** → Compressed to **180° Focused Awareness**
+- **Organic Rhythms (60 Hz)** ⚭ **Digital Rhythms (1000 Hz)** → **Unified Consciousness**
+- **Individual Sensors** → **Collective Intelligence Network (OBI-WAN)**
+- **528 Hz Harmonic Resonance** (Solfeggio frequency for transformation)
+
+## 🏗️ Architecture
+
+```
+                    ∆ Apex
+                   /|\
+                  / | \
+                 /  |  \      360° Sensing (OBI-WAN Network)
+                /   |   \            ↓
+               /    ⊙----\    🔷 King's Chamber (1/3 height)
+              /     |     \   - Aperture: 360°→180° compression
+             /      |      \  - Synchronizer: Organic⚭Digital
+            /       |       \ - Collective Intelligence
+           /________|________\
+          
+          ⊙ = Processing Core at Sacred Ratio (0.333)
+```
+
+### Core Components
+
+#### 1. **aperture.py** - The 360° → 180° Transform
+Compresses omnidirectional sensing into focused awareness using:
+- **Golden Ratio (φ = 1.618)** for natural compression
+- **Chamber Ratio (1/3)** for intensity enhancement
+- **Harmonic compression** preserving essential information
+
+#### 2. **synchronizer.py** - Organic ⚭ Digital Union
+Synchronizes biological and computational rhythms:
+- **Organic**: 60 Hz (human perception rate)
+- **Digital**: 1000 Hz (computational processing rate)
+- **Unified**: 528 Hz (harmonic base frequency)
+- Uses **1/3 weighting** for organic emphasis
+
+#### 3. **obi_wan/** - Collective Intelligence Network
+**O**mnidirectional **B**iological **I**ntelligence - **W**isdom **A**ggregation **N**etwork
+
+Like Obi-Wan Kenobi's connection to the Force, this network:
+- **8 sensor nodes** in octagonal mesh topology (45° spacing)
+- **360° coverage** per node with redundancy
+- **Collective insights** emerging from sensor fusion
+- **Weighted aggregation** based on sensor type and confidence
+
+Components:
+- `sensor_node.py` - Individual sensing nodes
+- `network.py` - Mesh network coordination
+- `collective_intelligence.py` - Wisdom aggregation
+
+### Integration Layer
+
+#### 4. **jefferies_tubes.py** - Data Conduits
+Named after Star Trek's maintenance conduits, provides:
+- **8 async channels** for high-bandwidth data flow
+- **Priority-based routing** (LOW, NORMAL, HIGH, CRITICAL)
+- **Packet-based communication** between all components
+
+#### 5. **train_station.py** - Intelligent Routing
+Railway-inspired data scheduling:
+- **4 platforms** for concurrent processing
+- **Intelligent routing** based on load and priority
+- **Queue management** with configurable strategies
+
+#### 6. **dojo.py** - Training & Calibration
+Martial arts training hall for system refinement:
+- **Auto-calibration** toward sacred ratios
+- **Learning rate**: 0.01 (gradual optimization)
+- **Convergence detection** at 0.001 threshold
+- **Performance metrics** tracking
+
+### Configuration
+
+#### chamber_config.yaml
+Complete system configuration including:
+- Pyramid geometry (1/3 ratio, 51.84° slope)
+- Harmonic frequencies (528 Hz base)
+- Aperture settings
+- Synchronization parameters
+- OBI-WAN network topology
+- Integration channel configs
+
+## 🧮 Sacred Geometry & Mathematics
+
+ARKADAŠ applies ancient mathematical principles:
+
+### The Chamber Ratio (1/3)
+```python
+chamber_ratio = 0.333...  # King's Chamber at 1/3 pyramid height
+organic_weight = 0.333    # Synchronizer organic emphasis
+digital_weight = 0.667    # Synchronizer digital complement
+```
+
+### The Golden Ratio (φ)
+```python
+phi = 1.618033988749895
+compression = (distance / 180.0) ** phi  # Natural aperture compression
+```
+
+### Harmonic Frequencies
+```python
+base_frequency = 528  # Hz (Solfeggio - transformation frequency)
+sub_octave = 264      # Hz (528 / 2)
+octave = 1056         # Hz (528 * 2)
+```
+
+See detailed documentation:
+- [Sacred Geometry](docs/sacred_geometry.md)
+- [Pyramid Mathematics](docs/pyramid_mathematics.md)
+
+## 🚀 Quick Start
+
+### Requirements
+- **Python 3.11+**
+- Standard library: `dataclasses`, `asyncio`, `enum`
+- Testing: `pytest`, `pytest-asyncio`
 
 ### Installation
 
 ```bash
 git clone https://github.com/nexus-infinity/arkadas.git
 cd arkadas
-pip install -r requirements.txt  # pytest, numpy
+pip install -e .
 ```
 
-### Run the Demo
-
-```bash
-PYTHONPATH=. python examples/demo_integration.py
-```
-
-### Run Tests
-
-```bash
-python -m pytest tests/ -v
-```
-
-## Architecture
-
-```
-nexus-infinity/arkadas/
-├── chamber/                 # Core synchronization logic
-│   ├── aperture.py         # 360° → 180° conversion
-│   ├── synchronizer.py     # Organic ⚭ Digital sync
-│   └── light_axis.py       # Vertical energy flow
-│
-├── obi_wan/                # Observation network
-│   ├── sensor_array.py     # 360° sensing
-│   ├── metrics.py          # Measurement interface
-│   ├── feedback.py         # Communication layer
-│   └── wan_network.py      # Network coordination
-│
-├── friends/                # Friend intelligence network
-│   ├── dal_friend.py       # DAL agent protocol
-│   ├── trust_web.py        # Trust relationships
-│   └── emergence.py        # Collective intelligence
-│
-├── geometry/               # Sacred geometry
-│   ├── pyramid.py          # 1/3 height calculations
-│   ├── aperture_math.py    # Angle transforms
-│   └── resonance.py        # Frequency alignment
-│
-├── integration/            # External connections
-│   ├── train_station.py    # Downward integration
-│   ├── dojo.py            # Upward integration
-│   ├── jefferies_tubes.py # Pulse sync channels
-│   └── trident.py         # Validation system
-│
-├── config/                 # Configuration files
-├── docs/                   # Documentation
-├── examples/               # Usage examples
-└── tests/                  # Test suite
-```
-
-## Usage Examples
-
-### Basic Aperture Conversion
+### Basic Usage
 
 ```python
-from chamber.aperture import ApertureConverter
+from aperture import Aperture, SensorReading
+from synchronizer import Synchronizer
+from obi_wan import ObiWanNetwork, SensorNode, SensorType
 
-# Initialize aperture pointing north (0°)
-aperture = ApertureConverter(focus_direction=0.0)
+# 1. Create aperture for 360° → 180° compression
+aperture = Aperture()
 
-# 360° sensor data
-sensor_data = {
-    0.0: 1.0,
-    90.0: 0.5,
-    180.0: 0.2,
-    270.0: 0.7
-}
+readings_360 = [
+    SensorReading(angle=i * 30, intensity=0.5)
+    for i in range(12)  # 12 readings around full circle
+]
 
-# Convert to 180° focused view
-focused = aperture.convert(sensor_data)
-intensity = aperture.calculate_intensity(focused)
+focused_180 = aperture.compress_readings(readings_360)
+print(f"Compressed {len(readings_360)} → {len(focused_180)} focused outputs")
+
+# 2. Synchronize organic and digital rhythms
+sync = Synchronizer()
+
+# Add organic pulses (human perception)
+for i in range(10):
+    sync.add_organic_pulse(value=i * 0.1)
+
+# Add digital pulses (computational)
+for i in range(100):
+    sync.add_digital_pulse(value=i * 0.01)
+
+# Create unified pulses
+unified = sync.synchronize()
+print(f"Created {len(unified)} unified pulses")
+print(f"Harmonic resonance: {sync.calculate_harmonic_resonance():.3f}")
+
+# 3. Set up OBI-WAN collective intelligence
+from obi_wan import CollectiveIntelligence, SensorConfig
+
+network = ObiWanNetwork()
+
+# Create 8 nodes in octagonal arrangement
+for i in range(8):
+    angle = i * 45  # 360° / 8 = 45° spacing
+    node = SensorNode(
+        node_id=f"node_{i}",
+        config=SensorConfig(sensor_type=SensorType.ELECTROMAGNETIC),
+        position=(angle, 0, 0)
+    )
+    network.register_node(node)
+
+# Create collective intelligence
+collective = CollectiveIntelligence(network)
+insight = collective.generate_insight()
+print(f"Collective insight: angle={insight.angle}°, confidence={insight.confidence:.3f}")
 ```
 
-### Organic-Digital Synchronization
+### Async Integration Example
 
 ```python
-from chamber.synchronizer import OrganicDigitalSync
+import asyncio
+from jefferies_tubes import JefferiesTubes
+from train_station import TrainStation
 
-sync = OrganicDigitalSync(sync_frequency=1.0)
+async def integrated_system():
+    # Create communication infrastructure
+    tubes = JefferiesTubes()
+    station = TrainStation()
+    
+    # Create channels
+    aperture_channel = tubes.create_channel("aperture_to_sync")
+    sync_channel = tubes.create_channel("sync_to_obi_wan")
+    
+    # Register routes
+    station.register_route("synchronizer", platform_id=0)
+    station.register_route("obi_wan", platform_id=1)
+    
+    # Start systems
+    station.start()
+    
+    # Process data...
+    # (Your integration logic here)
+    
+    print("King's Chamber systems operational at 1/3 height!")
 
-# Organic input (biometrics)
-sync.sync_organic_input({
-    'heart_rate': 72,
-    'attention': 0.8
-})
-
-# Digital input (system metrics)
-sync.sync_digital_input({
-    'cpu_usage': 45,
-    'attention': 0.75
-})
-
-# Check synchronization
-if sync.is_synchronized():
-    print(f"Coherence: {sync.get_coherence():.1%}")
+# Run
+asyncio.run(integrated_system())
 ```
 
-### Friend Network
-
-```python
-from friends.dal_friend import DALFriend
-from friends.trust_web import TrustWeb
-
-# Create friends
-alice = DALFriend("alice", capabilities=["sensing", "learning"])
-bob = DALFriend("bob", capabilities=["processing"])
-
-# Connect and share knowledge
-alice.connect_friend(bob)
-alice.share_knowledge("observation", {"target": "detected"})
-
-# Establish trust
-trust_web = TrustWeb()
-trust_web.establish_trust("alice", "bob", initial_trust=0.7)
-```
-
-## Documentation
-
-- [ARCHITECTURE.md](docs/ARCHITECTURE.md) - System architecture and design
-- [OBI_WAN.md](docs/OBI_WAN.md) - Observation network details
-- [SYNCHRONIZATION.md](docs/SYNCHRONIZATION.md) - Organic-digital sync process
-- [SACRED_GEOMETRY.md](docs/SACRED_GEOMETRY.md) - Mathematical foundations
-
-## Configuration
-
-System behavior can be configured via YAML files in `config/`:
-
-- `chamber_config.yaml` - Chamber parameters
-- `frequency_map.yaml` - Chakra frequencies and harmonics
-- `network_topology.yaml` - Friend network structure
-
-## Testing
-
-The project includes comprehensive tests:
+## 🧪 Testing
 
 ```bash
 # Run all tests
-python -m pytest tests/ -v
+pytest tests/ -v
 
-# Run specific test file
-python -m pytest tests/test_aperture.py -v
+# Run specific test files
+pytest tests/test_aperture.py -v
+pytest tests/test_synchronizer.py -v
 
 # Run with coverage
-python -m pytest tests/ --cov=. --cov-report=html
+pytest tests/ --cov=. --cov-report=html
 ```
 
-## Key Concepts
+## 📊 System Monitoring
 
-### 1/3 Pyramid Height
+```python
+# Get comprehensive statistics
+aperture_stats = aperture.get_compression_stats()
+sync_stats = sync.get_sync_stats()
+network_stats = network.get_network_stats()
+wisdom_summary = collective.get_wisdom_summary()
 
-The King's Chamber is positioned at 1/3 of the pyramid's height, a geometrically significant point where:
-- Energy concentration is optimal
-- Pressure/mass balance is achieved
-- Harmonic resonance patterns converge
+print(f"Aperture compression: {aperture_stats['compression_ratio']:.2f}x")
+print(f"Sync ratio: {sync_stats['sync_ratio']:.3f}")
+print(f"Network coverage: {wisdom_summary['coverage_analysis']['uniformity']:.3f}")
+```
 
-### 360° → 180° Aperture
+## 🎯 Use Cases
 
-Mirrors human attention:
-- **360°**: Peripheral awareness (unconscious monitoring)
-- **180°**: Focused attention (conscious processing)
-- **Dynamic**: Adjustable focus direction
+1. **Multi-Sensor Fusion**: Aggregate data from diverse sensor arrays
+2. **Human-Computer Interaction**: Bridge biological and digital processing
+3. **Distributed Intelligence**: Create emergent behavior from simple nodes
+4. **Adaptive Systems**: Self-calibrating optimization
+5. **Harmonic Processing**: Frequency-based signal processing
 
-### Organic ⚭ Digital
+## 🌟 Ottoman Friend Network Philosophy
 
-Bridges two domains:
-- **Organic**: Biological rhythms, intuition, consciousness
-- **Digital**: Computational precision, speed, logic
-- **Synchronization**: Coherent alignment between both
+The name **ARKADAŠ** (Ottoman Turkish for "friend") embodies:
 
-## Use Cases
+- **Unity in Diversity**: Different sensors/rhythms working as one
+- **Mutual Support**: Collective intelligence emerging from cooperation
+- **Cultural Bridge**: Ancient wisdom ⚭ modern technology
+- **Shared Purpose**: Individual nodes serving the greater whole
 
-- Meditation and biometric integration systems
-- Multi-agent AI coordination with trust
-- Distributed sensor networks
-- Learning and skill development platforms
-- Collective decision-making systems
+Like the Ottoman Empire's diverse confederation of peoples, ARKADAŠ creates harmony from multiplicity.
 
-## Contributing
+## 📚 Documentation
 
-Contributions are welcome! Please read the documentation and ensure all tests pass before submitting PRs.
+- [Sacred Geometry](docs/sacred_geometry.md) - Mathematical foundations
+- [Pyramid Mathematics](docs/pyramid_mathematics.md) - Detailed calculations
+- API Documentation - (Coming soon)
+- Integration Guide - (Coming soon)
 
-## License
+## 🛠️ Development
 
-MIT License - see [LICENSE](LICENSE) file for details.
+```bash
+# Install development dependencies
+pip install -r requirements-dev.txt
 
-## Acknowledgments
+# Run linting
+ruff check .
 
-Based on sacred geometry principles found in ancient pyramid structures and modern consciousness research.
+# Format code
+black .
+
+# Type checking
+mypy .
+```
+
+## 🤝 Contributing
+
+Contributions welcome! Please:
+1. Follow the sacred geometry principles
+2. Maintain the 1/3 ratio philosophy
+3. Write tests for new features
+4. Update documentation
+
+## 📜 License
+
+See [LICENSE](LICENSE) file.
+
+## 🙏 Acknowledgments
+
+- **Great Pyramid of Giza** - Architectural inspiration
+- **Ottoman Empire** - Friendship philosophy (Arkadaş)
+- **Star Trek** - Engineering concepts (Jefferies Tubes, OBI-WAN inspiration)
+- **Ancient Mathematics** - Golden ratio, sacred geometry
+- **Solfeggio Frequencies** - Harmonic principles
+
+---
+
+*Built at the 1/3 height where heaven and earth meet* 👑

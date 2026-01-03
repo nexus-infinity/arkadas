@@ -1,0 +1,105 @@
+# ARKADAŠ King's Chamber Configuration
+# Sacred geometry and pyramid mathematics at 1/3 height
+
+# Pyramid Geometry
+pyramid:
+  # King's Chamber is located at 1/3 of the pyramid height (0.333 ratio)
+  chamber_height_ratio: 0.333
+  # Golden ratio (phi) used in pyramid design
+  phi: 1.618033988749895
+  # Sacred angles
+  angles:
+    pyramid_slope: 51.84  # degrees - Great Pyramid slope
+    chamber_ceiling: 26.5  # degrees
+
+# Harmonic Resonance
+harmonics:
+  # Solfeggio frequency - transformation and miracles
+  base_frequency: 528  # Hz
+  # Additional resonant frequencies
+  octaves:
+    - 264  # Hz (528 / 2)
+    - 1056  # Hz (528 * 2)
+  # Harmonic ratios
+  ratios:
+    - 1.0
+    - 1.5  # Perfect fifth
+    - 2.0  # Octave
+
+# Aperture Configuration
+aperture:
+  # Transform 360° panoramic view to 180° focused view
+  input_range: 360  # degrees
+  output_range: 180  # degrees
+  # Transformation mode
+  mode: "harmonic_compression"
+  # Focal point for compression
+  focal_angle: 90  # degrees (zenith)
+
+# Synchronization Settings
+synchronization:
+  # Organic and digital synchronization parameters
+  mode: "organic_digital_union"
+  # Sample rates
+  organic_rate: 60  # Hz (human perception)
+  digital_rate: 1000  # Hz (system processing)
+  # Sync ratio
+  sync_ratio: 0.333  # King's Chamber ratio
+  # Buffer settings
+  buffer_size: 1024
+  overlap: 0.5
+
+# OBI-WAN Network Configuration
+obi_wan:
+  # Sensor network settings
+  network:
+    type: "collective_intelligence"
+    topology: "mesh"
+    nodes: 8  # Octagonal arrangement
+  # Sensor types
+  sensors:
+    - type: "electromagnetic"
+      range: 360
+      resolution: 1
+    - type: "acoustic"
+      range: 360
+      frequency_range: [20, 20000]
+    - type: "thermal"
+      range: 360
+      resolution: 0.1
+  # Data fusion
+  fusion:
+    method: "weighted_average"
+    weights:
+      electromagnetic: 0.4
+      acoustic: 0.4
+      thermal: 0.2
+
+# Integration Settings
+integration:
+  # Jefferies tubes - data conduits
+  jefferies_tubes:
+    channels: 8
+    bandwidth: "high"
+    protocol: "async"
+  # Train station - data routing
+  train_station:
+    platforms: 4
+    routing: "intelligent"
+    queue_size: 100
+  # Dojo - training and calibration
+  dojo:
+    training_mode: true
+    calibration_interval: 3600  # seconds
+    learning_rate: 0.01
+
+# System Settings
+system:
+  # Python version requirement
+  min_python_version: "3.11"
+  # Async settings
+  async_mode: true
+  max_workers: 8
+  # Logging
+  log_level: "INFO"
+  log_format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
