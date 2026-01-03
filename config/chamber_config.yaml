@@ -1,0 +1,30 @@
+# ARKADAŞ Chamber Configuration
+
+chamber:
+  name: "Kings_Chamber"
+  location: "1/3 pyramid height"
+  
+geometry:
+  pyramid_base: 230.0  # meters (Great Pyramid scale)
+  pyramid_height: 146.5  # meters
+  chamber_height_ratio: 0.333333  # 1/3
+  
+aperture:
+  default_width: 180  # degrees
+  focus_direction: 0  # degrees (north)
+  conversion_mode: "focused"
+  
+synchronization:
+  frequency: 1.0  # Hz
+  coherence_threshold: 0.5
+  organic_digital_balance: 0.5
+  
+light_axis:
+  peak_energy_default: 1.0
+  chamber_energy_default: 0.5
+  flow_rate_max: 10.0
+  
+network:
+  node_count: 36  # Default sensor array size
+  heartbeat_interval: 30  # seconds
+  connection_timeout: 60  # seconds

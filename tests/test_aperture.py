@@ -1,161 +1,225 @@
-"""
-Test suite for ARKADAŠ aperture sensing module
-"""
+"""Tests for the ARKADAŠ Aperture module."""
 
 import pytest
-from arkadas.aperture import ApertureSensing, SensorReading
+import asyncio
+from aperture import (
+    Aperture,
+    ApertureConfig,
+    SensorReading,
+    FocusedOutput
+)
 
 
-class TestApertureSensing:
-    """Tests for ApertureSensing class"""
+class TestApertureConfig:
+    """Test ApertureConfig dataclass."""
     
-    def test_initialization(self):
-        """Test aperture sensing initialization"""
-        aperture = ApertureSensing()
-        assert len(aperture.input_buffer) == 0
-        assert len(aperture.output_buffer) == 0
-        assert not aperture.is_active
-        assert aperture.total_received == 0
-        assert aperture.total_processed == 0
+    def test_default_config(self):
+        """Test default configuration values."""
+        config = ApertureConfig()
+        assert config.input_range == 360.0
+        assert config.output_range == 180.0
+        assert config.focal_angle == 90.0
+        assert config.mode == "harmonic_compression"
+        assert config.chamber_ratio == 0.333
     
-    def test_start_stop(self):
-        """Test starting and stopping aperture"""
-        aperture = ApertureSensing()
-        
-        aperture.start()
-        assert aperture.is_active
-        
-        aperture.stop()
-        assert not aperture.is_active
+    def test_custom_config(self):
+        """Test custom configuration."""
+        config = ApertureConfig(
+            input_range=720.0,
+            output_range=90.0,
+            focal_angle=45.0,
+            chamber_ratio=0.5
+        )
+        assert config.input_range == 720.0
+        assert config.output_range == 90.0
+        assert config.focal_angle == 45.0
+        assert config.chamber_ratio == 0.5
+
+
+class TestSensorReading:
+    """Test SensorReading dataclass."""
     
-    def test_receive_360_inactive(self):
-        """Test receiving when inactive"""
-        aperture = ApertureSensing()
-        result = aperture.receive_360(90, "test_data")
-        assert result is False
-        assert aperture.total_received == 0
+    def test_sensor_reading_creation(self):
+        """Test creating a sensor reading."""
+        reading = SensorReading(angle=45.0, intensity=0.8)
+        assert reading.angle == 45.0
+        assert reading.intensity == 0.8
+        assert reading.timestamp == 0.0
+        assert reading.sensor_type == "generic"
+
+
+class TestAperture:
+    """Test Aperture class."""
     
-    def test_receive_360_active(self):
-        """Test receiving when active"""
-        aperture = ApertureSensing()
-        aperture.start()
-        
-        result = aperture.receive_360(90, "test_data", "source1")
-        assert result is True
-        assert aperture.total_received == 1
-        assert len(aperture.input_buffer) == 1
-        
-        reading = aperture.input_buffer[0]
-        assert reading.angle == 90
-        assert reading.data == "test_data"
-        assert reading.source_id == "source1"
+    def test_aperture_initialization(self):
+        """Test aperture initialization."""
+        aperture = Aperture()
+        assert aperture.config.input_range == 360.0
+        assert aperture.compression_ratio == 2.0
     
-    def test_angle_normalization(self):
-        """Test angle normalization to 0-360 range"""
-        aperture = ApertureSensing()
-        aperture.start()
-        
-        # Test angle > 360
-        aperture.receive_360(450, "data1")
-        assert aperture.input_buffer[0].angle == 90  # 450 % 360
-        
-        # Test negative angle
-        aperture.receive_360(-90, "data2")
-        assert aperture.input_buffer[1].angle == 270  # -90 % 360
+    def test_custom_aperture(self):
+        """Test aperture with custom config."""
+        config = ApertureConfig(input_range=720.0, output_range=180.0)
+        aperture = Aperture(config)
+        assert aperture.compression_ratio == 4.0
     
-    def test_process_aperture_empty(self):
-        """Test processing with empty buffer"""
-        aperture = ApertureSensing()
-        aperture.start()
+    def test_transform_angle_basic(self):
+        """Test basic angle transformation."""
+        aperture = Aperture()
         
-        result = aperture.process_aperture()
-        assert len(result) == 0
+        # Test focal angle (90°)
+        output = aperture.transform_angle(90.0)
+        assert 0.0 <= output <= 180.0
+        
+        # Test opposite side (270°)
+        output = aperture.transform_angle(270.0)
+        assert 0.0 <= output <= 180.0
     
-    def test_process_aperture_with_data(self):
-        """Test processing with data"""
-        aperture = ApertureSensing()
-        aperture.start()
+    def test_transform_angle_wrapping(self):
+        """Test angle wrapping at 360°."""
+        aperture = Aperture()
         
-        # Add multiple readings
-        aperture.receive_360(0, "north")
-        aperture.receive_360(90, "east")
-        aperture.receive_360(180, "south")
-        aperture.receive_360(270, "west")
-        
-        result = aperture.process_aperture()
-        
-        assert len(result) == 4
-        assert aperture.total_processed == 4
-        assert len(aperture.input_buffer) == 0  # Should be cleared
-        assert len(aperture.output_buffer) == 4
+        # Test angles beyond 360°
+        output1 = aperture.transform_angle(370.0)
+        output2 = aperture.transform_angle(10.0)
+        assert abs(output1 - output2) < 1.0  # Should be similar
     
-    def test_focused_output_structure(self):
-        """Test structure of focused output"""
-        aperture = ApertureSensing()
-        aperture.start()
-        
-        aperture.receive_360(45, "test_data")
-        result = aperture.process_aperture()
-        
-        assert len(result) == 1
-        focused = result[0]
-        
-        assert "original_angle" in focused
-        assert "data" in focused
-        assert "timestamp" in focused
-        assert "focused" in focused
-        assert "upward_vector" in focused
-        assert focused["focused"] is True
-        assert focused["original_angle"] == 45
+    def test_compress_readings_empty(self):
+        """Test compressing empty readings list."""
+        aperture = Aperture()
+        focused = aperture.compress_readings([])
+        assert len(focused) == 0
     
-    def test_upward_vector_calculation(self):
-        """Test upward vector calculation"""
-        aperture = ApertureSensing()
-        aperture.start()
+    def test_compress_readings_single(self):
+        """Test compressing a single reading."""
+        aperture = Aperture()
+        readings = [SensorReading(angle=90.0, intensity=0.5)]
+        focused = aperture.compress_readings(readings, resolution=10.0)
         
-        aperture.receive_360(0, "data")
-        result = aperture.process_aperture()
-        
-        vector = result[0]["upward_vector"]
-        assert "azimuth" in vector
-        assert "elevation" in vector
-        assert "x" in vector
-        assert "y" in vector
-        assert "z" in vector
-        assert vector["z"] == 1.0  # Upward component
-        assert vector["elevation"] == 45.0  # Default elevation
+        assert len(focused) > 0
+        assert all(isinstance(f, FocusedOutput) for f in focused)
     
-    def test_get_focused_output(self):
-        """Test getting focused output"""
-        aperture = ApertureSensing()
-        aperture.start()
+    def test_compress_readings_multiple(self):
+        """Test compressing multiple readings."""
+        aperture = Aperture()
         
-        aperture.receive_360(0, "data1")
-        aperture.process_aperture()
+        # Create readings around the full circle
+        readings = [
+            SensorReading(angle=i * 30.0, intensity=0.5)
+            for i in range(12)
+        ]
         
-        output = aperture.get_focused_output()
-        assert len(output) == 1
-        assert len(aperture.output_buffer) == 0  # Should be cleared
+        focused = aperture.compress_readings(readings, resolution=10.0)
+        
+        # Should have some focused outputs
+        assert len(focused) > 0
+        
+        # All outputs should be in 0-180° range
+        for output in focused:
+            assert 0.0 <= output.angle < 180.0
     
-    def test_get_metrics(self):
-        """Test metrics retrieval"""
-        aperture = ApertureSensing()
-        aperture.start()
+    def test_compress_readings_intensity_enhancement(self):
+        """Test that intensity is enhanced by chamber ratio."""
+        aperture = Aperture()
         
-        aperture.receive_360(0, "data1")
-        aperture.receive_360(90, "data2")
-        aperture.process_aperture()
+        # Create reading with known intensity
+        readings = [SensorReading(angle=90.0, intensity=0.6)]
+        focused = aperture.compress_readings(readings, resolution=10.0)
         
-        metrics = aperture.get_metrics()
-        assert metrics["active"] is True
-        assert metrics["total_received"] == 2
-        assert metrics["total_processed"] == 2
-        assert metrics["processing_rate"] == 1.0
+        # Enhanced intensity should be higher than original
+        if focused:
+            assert focused[0].intensity >= 0.6
     
-    def test_get_status(self):
-        """Test status retrieval"""
-        aperture = ApertureSensing()
-        assert aperture.get_status() == "INACTIVE"
+    def test_calculate_focal_efficiency(self):
+        """Test focal efficiency calculation."""
+        aperture = Aperture()
         
-        aperture.start()
-        assert aperture.get_status() == "ACTIVE"
+        # All readings near focal point
+        readings = [
+            SensorReading(angle=90.0 + i, intensity=0.5)
+            for i in range(-20, 21)
+        ]
+        
+        efficiency = aperture.calculate_focal_efficiency(readings)
+        assert 0.0 <= efficiency <= 1.0
+        
+        # Should be moderate since all readings are near focal point
+        # (Note: Perfect efficiency would be at exactly 0.333 concentration)
+        assert efficiency > 0.2
+    
+    def test_calculate_focal_efficiency_dispersed(self):
+        """Test focal efficiency with dispersed readings."""
+        aperture = Aperture()
+        
+        # Readings spread across full circle
+        readings = [
+            SensorReading(angle=i * 30.0, intensity=0.5)
+            for i in range(12)
+        ]
+        
+        efficiency = aperture.calculate_focal_efficiency(readings)
+        assert 0.0 <= efficiency <= 1.0
+        
+        # Dispersed readings should have different efficiency profile
+        # The function compares concentration to chamber ratio (0.333)
+        assert 0.0 <= efficiency <= 1.0  # Just verify it's in valid range
+    
+    def test_get_compression_stats(self):
+        """Test getting compression statistics."""
+        config = ApertureConfig(
+            input_range=360.0,
+            output_range=180.0,
+            focal_angle=90.0
+        )
+        aperture = Aperture(config)
+        
+        stats = aperture.get_compression_stats()
+        
+        assert stats["input_range"] == 360.0
+        assert stats["output_range"] == 180.0
+        assert stats["compression_ratio"] == 2.0
+        assert stats["focal_angle"] == 90.0
+        assert stats["chamber_ratio"] == 0.333
+        assert stats["mode"] == "harmonic_compression"
+
+
+class TestApertureAsync:
+    """Test async functionality of Aperture."""
+    
+    @pytest.mark.asyncio
+    async def test_stream_transform(self):
+        """Test asynchronous stream transformation."""
+        aperture = Aperture()
+        
+        input_stream = asyncio.Queue()
+        output_stream = asyncio.Queue()
+        
+        # Add some test readings
+        for i in range(5):
+            await input_stream.put(
+                SensorReading(angle=i * 72.0, intensity=0.5)
+            )
+        
+        # Add sentinel to end stream
+        await input_stream.put(None)
+        
+        # Run transformation
+        await aperture.stream_transform(
+            input_stream,
+            output_stream,
+            batch_size=5
+        )
+        
+        # Check output
+        output_count = 0
+        while not output_stream.empty():
+            output = await output_stream.get()
+            assert isinstance(output, FocusedOutput)
+            output_count += 1
+        
+        # Should have at least one output
+        assert output_count > 0
+
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])

@@ -1,3 +1,1 @@
-"""
-Test suite for ARKADAŠ - The King's Chamber
-"""
+"""Tests for ARKADAŠ King's Chamber system."""
